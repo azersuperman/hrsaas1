@@ -37,7 +37,7 @@ export default {
 }
 
 .sidebarLogoFade-enter,
-.sidebarLogoFade-leave-to {
+.Fade-leave-to {
   opacity: 0;
 }
 
