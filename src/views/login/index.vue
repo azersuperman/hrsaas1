@@ -50,6 +50,12 @@
 
     </el-form>
   </div>
+  <!-- 环境变量的作用
+  1.正常公司有几个环境 4 开发 dev 测试 test 预发 uat 线上 pro
+  2. 项目里如何配置这几个环境  通过.env 配置base api
+  3. 开发环境接口：/api
+  4. 生产环境接口：/prod-api
+   -->
 </template>
 
 <script>
