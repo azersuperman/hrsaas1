@@ -40,7 +40,6 @@
 </template>
 <script>
 import { validPhone } from '@/utils/validate'
-// import { login } from '@/api/login'
 export default {
   name: 'Login',
   data() {
@@ -76,10 +75,6 @@ export default {
       })
     },
     async login() {
-      // await login({
-      //   mobile: '13800000002',
-      //   password: '123456'
-      // })
       try {
         await this.$refs.loginForm.validate()
         await this.$store.dispatch('user/loginAction', this.loginForm)
