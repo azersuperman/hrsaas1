@@ -75,10 +75,12 @@ export default {
       })
     },
     async login() {
+      console.log(0)
       try {
         await this.$refs.loginForm.validate()
         await this.$store.dispatch('user/loginAction', this.loginForm)
         this.loading = true
+        this.$router.push('/')
       } finally {
         this.loading = false
       }
