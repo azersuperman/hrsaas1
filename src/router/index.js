@@ -60,7 +60,7 @@ export const constantRoutes = [
     component: Layout,
     children: [{
       path: '',
-      name: 'Dashboard',
+      name: 'Dashboard11',
       component: () => import('@/views/dashboard/index'),
       meta: { title: 'Dashboard11', icon: 'dashboard' }
     }]

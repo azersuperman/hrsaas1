@@ -1,5 +1,5 @@
 import { login } from '@/api/login'
-import { getUserInfoAPI } from '@/api/user'
+import { getUserInfoAPI, getUserdetailsAPI } from '@/api/user'
 export default {
   namespaced: true,
   state: {
@@ -26,9 +26,11 @@ export default {
 
     async getUserInfo({ commit }) {
       const res = await getUserInfoAPI()
-      console.log(res)
-      commit('SET_USER_INFO', res)
-      // return JSON.parse(JSON.stringify(res))
+      const res1 = await getUserdetailsAPI(res.userId)
+      const result = { ...res, ...res1 }
+      // console.log(res)
+      commit('SET_USER_INFO', result)
+      return JSON.parse(JSON.stringify(res))
     }
   }
 }
