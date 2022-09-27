@@ -17,6 +17,7 @@ const isCheck = function() {
   return Timeout > settime
 }
 
+// 请求拦截器
 service.interceptors.request.use(config => {
   // console.log(config)
   if (store.getters.token) {
