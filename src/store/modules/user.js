@@ -4,7 +4,8 @@ export default {
   namespaced: true,
   state: {
     token: null,
-    userInfo: {}
+    userInfo: {},
+    time: null
   },
   mutations: {
     SET_TOKEN(state, token) {
@@ -13,8 +14,14 @@ export default {
     SET_USER_INFO(state, userInfo) {
       state.userInfo = userInfo
     },
+    SET_TIME(state) {
+      state.time = +new Date()
+    },
     REMOVE_USER_INFO(state) {
       state.userInfo = {}
+    },
+    REMOVE_TOKEN(state) {
+      state.token = null
     }
   },
   actions: {
@@ -22,6 +29,7 @@ export default {
       // 接口
       const data = await login(loginData)
       commit('SET_TOKEN', data)
+      commit('SET_TIME')
     },
 
     async getUserInfo({ commit }) {
@@ -31,6 +39,10 @@ export default {
       // console.log(res)
       commit('SET_USER_INFO', result)
       return JSON.parse(JSON.stringify(res))
+    },
+    logout({ commit }) {
+      commit('REMOVE_USER_INFO')
+      commit('REMOVE_TOKEN')
     }
   }
 }
