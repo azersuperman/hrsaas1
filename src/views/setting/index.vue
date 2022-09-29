@@ -105,7 +105,8 @@ export default {
         this.total = total
         this.roleList = rows
         if (total > 0 && this.roleList.length === 0) {
-          this.page.page = this.page.page--
+          this.page.page = this.page.page - 1
+          this.getRoleList()
         }
       } finally {
         this.loading = false
@@ -119,7 +120,6 @@ export default {
     // 回显在新增角色的组件上
     editRole(row) {
       // row直接赋值给addRole
-      console.log(row)
       this.$refs.addRole.formDate = { ...row }
       this.dialogVisible = true
     },
@@ -143,10 +143,8 @@ export default {
     },
     async getcompanyInfo() {
       try {
-        console.log(this.companyId)
         const res = await getCompanyInfo(this.companyId)
         this.companyInfo = res
-        console.log(res)
       } catch (e) {
         console.log(e)
       }
