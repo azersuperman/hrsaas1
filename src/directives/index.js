@@ -1,8 +1,8 @@
 export const imgerror = {
   inserted(el, binging, vnode) {
-    console.log(el)
-    console.log(binging)
-    console.log(vnode)
+    // console.log(el)
+    // console.log(binging)
+    // console.log(vnode)
     el.onerror = function() {
       el.src = binging.value
     }

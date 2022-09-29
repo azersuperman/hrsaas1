@@ -13,7 +13,6 @@ const settime = 3600
 const isCheck = function() {
   const isCheckOut = Date.now()
   const Timeout = (isCheckOut - store.state.user.time) / 1000
-  console.log(Timeout - settime)
   return Timeout > settime
 }
 
@@ -21,7 +20,6 @@ const isCheck = function() {
 service.interceptors.request.use(config => {
   // console.log(config)
   if (store.getters.token) {
-    console.log(config)
     if (isCheck()) {
       store.dispatch('user/logout')
       router.push('/login')
@@ -39,7 +37,6 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(
   response => {
     const { success, message, data } = response.data
-    console.log(response.data)
     if (success) {
       return data
     } else {
