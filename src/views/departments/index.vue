@@ -6,17 +6,21 @@
     </el-card>
 
     <el-tree :data="departs" :props="defaultProps" :default-expand-all="true">
+      <tree-tools slot-scope="{data}" :tree-node="data" @addDept='handCommand' />
     </el-tree>
-
+    <HrsaasAddDept :dialog-visible.sync="dialogVisible" :tree-node='currentNode' />
   </div>
 </template>
 
 <script>
 import TreeTools from './components/tree-tools.vue'
+import HrsaasAddDept from './components/add-depts.vue'
 import { getDepartments } from '@/api/departments'
+import { tranListToTreeData } from '@/utils'
 export default {
   components: {
-    TreeTools
+    TreeTools,
+    HrsaasAddDept
   },
   data() {
     return {
@@ -24,9 +28,9 @@ export default {
       defaultProps: {
         label: 'name'
       },
-      departs: [{ name: '总裁办', manager: '张凯旋', children: [{ name: '董事会', manager: '小朱' }] },
-        { name: '行政部', manager: '小陈' },
-        { name: '人事部', manager: '小余' }]
+      departs: [],
+      dialogVisible: false,
+      currentNode: {}
     }
   },
   mounted() {
@@ -34,7 +38,14 @@ export default {
   },
   methods: {
     async getDepartments() {
-      await getDepartments()
+      const { depts, companyMange, companyName } = await getDepartments()
+      this.departs = tranListToTreeData(depts, '')
+      this.company = { name: companyName, manager: companyMange }
+    },
+    handCommand(node) {
+      // console.log(node)
+      this.dialogVisible = true
+      this.currentNode = node
     }
   }
 }
