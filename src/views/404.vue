@@ -5,7 +5,7 @@
         <img
           class="pic-404__parent"
           src="@/assets/404_images/404.png"
-          alt="404"
+          alt="409"
         />
         <img
           class="pic-404__child left"
